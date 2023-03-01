@@ -1,4 +1,7 @@
 config = {
     "DEBUG": True,
-    "CACHE": "SimpleCache", 
+}
+
+cache_config = {
+    "CACHE_TYPE": "SimpleCache",
 }

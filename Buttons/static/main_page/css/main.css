@@ -1,7 +1,11 @@
-#cool {
+.cool {
     background-color: red;
 }
 
-#stopper_timer {
-    visibility: collapse;
+#stopper-timer {
+    display:none;
+}
+
+#delete-note {
+    display:none;
 }
