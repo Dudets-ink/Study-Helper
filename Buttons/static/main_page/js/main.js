@@ -57,13 +57,16 @@ $(function(){
         let deleteButton = $('#delete-note');
         let form = $("#form-list")
         let notes = $('#notes');
+        let note = $("<li></li>");
 
         form.submit(function(event){
             event.preventDefault()
 
             if (input.val().trim()){
-                let note = $("<li></li>");
-                note.html(input.val());
+                let val = input.val()
+                val = val.replace(/\s/g, '_')
+                console.log(val)
+                note.html(val);
                 note.addClass("note");  
                 if ($("#notes li").last().attr('id') != undefined) {
                     id = $("#notes li").last().attr('id').split('-')[1] 
@@ -71,27 +74,20 @@ $(function(){
                 }else {
                     note.attr('id', 'note-1');  
                 };
-                console.log(note.attr('id'))
-                notes.append(note);
-            }
-            else {
+                // notes.append(note);
+                $.ajax({
+                    type:'POST',
+                    data: {"noteVal":note.html(), "noteId":note.attr('id')},
+                    success: function(){
+                        $("#notes").load(location.href + " #notes>*", "");
+                    }
+                }).done(function(){
+                    input.val('');
+                })
+            } else {
                 alert('Wrong input...')
             }
-
-            // let notesArr = ''
-            // for (n = 0;notes.children().length > n;n++){
-            //     notesArrpush(notes.children()[n]);
-            // }
-            // $.ajax({
-            //     type:'POST',
-            //     data: {"notes":notesArr},
-            //     success: function(){
-            //         document.location.reload()
-            //     }
-                
-            // }).done();
-            
-            })
+            });
     }
 
     timer()

@@ -35,7 +35,13 @@
                 <button type='submit' id='enter-note'>Enter</button>
                 <button type='delete' id='delete-note'>Completed</button>
             </form>
-            <ul id='notes'> </ul>
+            <ul id='notes'>
+                    {% for id_val in notes%}
+                        <li id="{{id_val[0]}}">
+                            {{id_val[1].replace('_', ' ')}}
+                        </li>
+                    {% endfor%}
+            </ul>
         </div>
         <div class='timer'>
             <div id='ticker-timer'>
