@@ -14,6 +14,7 @@ config = {
     "SQLALCHEMY_DATABASE_URI": f'postgresql:// \
             {db_config["USER"]}:{db_config["PASSWORD"]} \
             @localhost:5432/{db_config["DB"]}',
+    'SQLALCHEMY_TRACK_MODIFICATIONS': False,
     
 }
  
