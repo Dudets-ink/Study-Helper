@@ -7,12 +7,12 @@ $(function(){
         let time
 
         starter.click(function(){
-            time = parseInt(input.val())- 1;
+            time = parseInt(input.val())*60;
             // || time/60 >= 1441
             if (isNaN(time) ){
                 alert('wrong input');
                 return 0
-            }
+            }0
 
             starter.hide(1000);
             stopper.show(1000);
@@ -54,12 +54,10 @@ $(function(){
 
     async function toDoList(){
         let input = $('#input-note');
-        let deleteButton = $('#delete-note');
-        let form = $("#form-list")
-        let notes = $('#notes');
+        let formAdd = $("#form-list")
         let note = $("<li></li>");
 
-        form.submit(function(event){
+        formAdd.submit(function(event){
             event.preventDefault()
 
             if (input.val().trim()){
@@ -74,7 +72,6 @@ $(function(){
                 }else {
                     note.attr('id', 'note-1');  
                 };
-                // notes.append(note);
                 $.ajax({
                     type:'POST',
                     data: {"noteVal":note.html(), "noteId":note.attr('id')},
@@ -88,8 +85,19 @@ $(function(){
                 alert('Wrong input...')
             }
             });
-    }
 
-    timer()
-    toDoList()
+    };
+
+    timer();
+    toDoList();
 });
+
+function delNote(note){
+    $.ajax({
+        type: 'DELETE',
+        data: {'noteId': note},
+        success: function (){
+            $("#notes").load(location.href + " #notes>*", "");
+        }
+    });
+};

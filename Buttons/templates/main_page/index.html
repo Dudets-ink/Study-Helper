@@ -33,13 +33,13 @@
             <form id='form-list'>
                 <input type='text' id='input-note' required>
                 <button type='submit' id='enter-note'>Enter</button>
-                <button type='delete' id='delete-note'>Completed</button>
             </form>
             <ul id='notes'>
-                    {% for id_val in notes%}
-                        <li id="{{id_val[0]}}">
-                            {{id_val[1].replace('_', ' ')}}
+                    {% for data in notes%}
+                        <li id="{{data[0]}}">
+                            {{data[1].replace('_', ' ')}}
                         </li>
+                        <button onclick="delNote('{{data[0]}}')">Delete</button>
                     {% endfor%}
             </ul>
         </div>

@@ -14,7 +14,7 @@ class User(db.Model):
 
 class Info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.Foreign_key('user.id'), 
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), 
                         nullable=False)
     
     text = db.Column(db.Text, nullable=False)
