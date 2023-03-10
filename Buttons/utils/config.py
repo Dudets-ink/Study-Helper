@@ -7,14 +7,10 @@ db_config = {
         'PASSWORD': 'flask_info',
         'DB': 'info_db',
 }
-
-config = {
-    "DEBUG": True,
-    "SECRET_KEY": 'kjbn#x^d8ut2$hkgds@fgj0',
-    "SQLALCHEMY_DATABASE_URI": f'postgresql:// \
-            {db_config["USER"]}:{db_config["PASSWORD"]} \
-            @localhost:5432/{db_config["DB"]}',
-    'SQLALCHEMY_TRACK_MODIFICATIONS': False,
+class Config():
+    DEBUG =  True
+    SECRET_KEY = 'kjbn#x^d8ut2$hkgds@fgj0'
+    SQLALCHEMY_DATABASE_URI =  f'postgresql://{db_config["USER"]}:{db_config["PASSWORD"]}@localhost:5432/{db_config["DB"]}'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False,
     
-}
  

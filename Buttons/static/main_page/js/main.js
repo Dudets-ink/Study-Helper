@@ -62,8 +62,6 @@ $(function(){
 
             if (input.val().trim()){
                 let val = input.val()
-                val = val.replace(/\s/g, '_')
-                console.log(val)
                 note.html(val);
                 note.addClass("note");  
                 if ($("#notes li").last().attr('id') != undefined) {
@@ -88,14 +86,43 @@ $(function(){
 
     };
 
+    async function loginButton(){
+        $('#login').click(function(){
+            $.ajax({
+                url:flask_util.url_for('user.login'),
+                type: 'GET',
+                success: function(){
+                    loginPage = flask_util.url_for('user.login')
+                    $('.popup-content').load(loginPage)
+                }
+            })
+        })
+    };
+
+    async function registerButton(){
+        $('#register').click(function(){
+            $.ajax({
+                url:flask_util.url_for('user.register'),
+                type: 'GET',
+                success: function(){
+                    registerPage = flask_util.url_for('user.register')
+                    $('.popup-content').load(registerPage)
+                }
+            })
+        })
+    };
+
     timer();
     toDoList();
+    loginButton();
+    registerButton();
+
 });
 
-function delNote(note){
+function delNote(noteId){
     $.ajax({
         type: 'DELETE',
-        data: {'noteId': note},
+        data: {'noteId': noteId},
         success: function (){
             $("#notes").load(location.href + " #notes>*", "");
         }
