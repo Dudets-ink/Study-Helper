@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block stylesheet %}
-    {{ url_for('static', filename='main_page/css/main.css') }}"
+    {{ url_for('static', filename='main_page/css/index.css') }}"
 {% endblock stylesheet %}
 
 {% block body %}
@@ -16,11 +16,14 @@
                                 {{note.text}}
                             </li>
                             <button onclick="delNote('{{note.id}}')">Delete</button>
+                        <hr>
                         {% endfor%}
                 </ul>
             </div>
         {% else %}
-            <p>You should login to get access to notes...</p>
+            <div class='to-do-list'>
+                <h4>You should login to get access to notes...</h4>
+            </div>
         {% endif %}
 
         <div class='timer'>

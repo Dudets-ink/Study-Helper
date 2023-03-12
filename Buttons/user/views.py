@@ -23,10 +23,11 @@ def login():
                 if check_password_hash(user.password,
                                        form.data['password']):
                     login_user(user) 
-                    flash('You successfully logged in!')
+                    flash('You successfully logged in!', 'success')
                     return redirect(url_for('main_page.index'))
             else:
-                flash('Wrong username or password...')
+                flash('Wrong username or password...', 'error')
+                return redirect(url_for('main_page.index'))
         
     return render_template('login.html', form=form)
 
@@ -43,16 +44,17 @@ def register():
             db.session.add(user)
             db.session.commit()
             
-            flash('You have successfully registered')
+            flash('You have successfully registered', 'success')
             return redirect(url_for('main_page.index'))
         else:
-            flash('Username already taken by someone...')
+            flash('Username already taken by someone...', 'error')
+            return redirect(url_for('main_page.index'))
         
     return render_template('register.html', form=form)
 
 
 @user_bp.route('/logout')
 def logout():
-    flash('You logged out')
+    flash('You logged out', 'success')
     logout_user()
     return redirect(url_for('main_page.index'))

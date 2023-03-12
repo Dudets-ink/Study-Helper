@@ -2,7 +2,7 @@ from . import main_bp
 from ..models import Notes
 from .. import db
 
-from flask import render_template, request, make_response
+from flask import render_template, request
 from flask_login import current_user
 
 
