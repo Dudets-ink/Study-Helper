@@ -6,6 +6,7 @@
 {% block body %}
         {% if current_user.is_authenticated %}
             <div class='to-do-list'>
+                <span>Draft</span>
                 <form id='form-list'>
                     <input type='text' id='input-note' required>
                     <button type='submit' id='enter-note'>Enter</button>
@@ -27,6 +28,7 @@
         {% endif %}
 
         <div class='timer'>
+            <span>Timer</span>
             <div id='ticker-timer'>
                 <input id='input-timer' type='text'>
             </div>
