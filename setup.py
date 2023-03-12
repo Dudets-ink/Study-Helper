@@ -1,4 +1,4 @@
-from Buttons import create_app, db
+from App import create_app, db
 
 
 app = create_app()
