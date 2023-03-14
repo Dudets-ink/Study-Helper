@@ -8,6 +8,15 @@ from flask_login import current_user
 
 @main_bp.route('/', methods=['GET', 'POST', 'DELETE'])
 def index():
+    """Renders index page.
+    Handles such methods as:
+    GET - page entry, loading array of notes from DB
+    POST - adds note, puts note to DB and conjoin with user
+    DELETE - delete note form DB
+
+    Returns:
+        Html main page
+    """
     if request.method == 'POST':
         note_val = request.form['noteVal']
         

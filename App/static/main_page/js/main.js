@@ -6,17 +6,20 @@ $(function(){
         let ticker = $('#ticker-timer');
         let time
 
+        // listens start button of timer
         starter.click(function(){
+            //converts entered time to minutes
             time = parseInt(input.val())*60;
-            // || time/60 >= 1441
             if (isNaN(time) ){
                 alert('wrong input');
                 return 0
             }0
 
+            // changes start button to stop button
             starter.hide(1000);
             stopper.show(1000);
 
+            // moves timer's digits
             intervalTimer = setInterval(function(){
                 seconds = time%60;
                 minutes = time/60%60;
@@ -25,7 +28,14 @@ $(function(){
                 if (time <= 0){
                     clearInterval(intervalTimer);
                     alert('Time has passed...');
-                    document.location.reload(); // место ajax
+                    // reloads timer app if time passed
+                    $.ajax({
+                        type:'GET',
+                        cache:false, 
+                        success: function(){
+                            $("#ticker-timer").load(location.href + " #ticker-timer>*", "");
+                    }
+                });
                 }
                 else{
                     let strTime = `${Math.trunc(hours)}:
@@ -37,6 +47,7 @@ $(function(){
             }, 1000)
             }
         );
+        // reloads timer app if stop button clicked
         stopper.click(function(){
             clearInterval(intervalTimer);
             alert('Timer stopped');
@@ -57,9 +68,11 @@ $(function(){
         let formAdd = $("#form-list")
         let note = $("<li></li>");
 
+        // tracks enter note button
         formAdd.submit(function(event){
             event.preventDefault()
 
+            // creates note id
             if (input.val().trim()){
                 let val = input.val()
                 note.html(val);
@@ -70,6 +83,8 @@ $(function(){
                 }else {
                     note.attr('id', 'note-1');  
                 };
+
+                //reloads notes app to display new note
                 $.ajax({
                     type:'POST',
                     data: {"noteVal":note.html(), "noteId":note.attr('id')},

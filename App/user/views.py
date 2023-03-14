@@ -14,6 +14,14 @@ def load_user(user_id):
 
 @user_bp.route('login/', methods=['GET', 'POST'])
 def login():
+    """Renders page with login form.
+    Handles such methods as:
+    GET - page entry, form creation
+    POST - login user if password hash correct
+
+    Returns:
+        Html login page
+    """
     form = LoginForm()
         
     if request.method == 'POST':
@@ -33,6 +41,14 @@ def login():
 
 @user_bp.route('register/', methods=['GET', 'POST'])
 def register():
+    """Renders page with register form.
+    Handles such methods as:
+    GET - page entry, form creation
+    POST - registers user, adds him to DB
+
+    Returns:
+        Html register page
+    """
     form = RegisterForm()
     if request.method == 'POST':
         username = form.data['username']
@@ -55,6 +71,11 @@ def register():
 
 @user_bp.route('/logout')
 def logout():
+    """Redirecting to index page.
+
+    Returns:
+        redirection to index page
+    """
     flash('You logged out', 'success')
     logout_user()
     return redirect(url_for('main_page.index'))
