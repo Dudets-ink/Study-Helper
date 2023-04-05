@@ -5,5 +5,7 @@ On the main page, you can view your notes that are arranged based on their creat
 
 ## Technologies
 Database: SQLAlchemy
+
 JS: jQuery
+
 Framework: Flask
