@@ -4,6 +4,6 @@ To create notes, you need to first register or log in to the app.
 On the main page, you can view your notes that are arranged based on their creation date.
 
 ## Technologies
-- Database: SQLAlchemy
+- ORM: SQLAlchemy
 - JS: jQuery
 - Framework: Flask
